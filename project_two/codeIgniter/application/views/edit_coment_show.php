@@ -119,7 +119,7 @@
 
 
 	<?php foreach($post_blogger as $entry) : ?>
-		 <form id='containerPost' name="frmPostEntry" method="post" action="<?php echo 'index.php/blog/insert_coment'; ?>">
+		 <form id='containerPost' name="frmPostEntry" method="post" action="">
 		 					<input type="hidden" name="id_post" value=<?php echo $entry->id_post;?>>
 	                        <h2><?=$entry->titulo?></h2>
 	                        <h4>Date: <?=$entry->fecha?></h4>
@@ -129,12 +129,14 @@
 
 								<?php foreach($coment as $coments) : ?>
 
-									<form id='containerComent_user' name="frmComent" method="post" action="">
+									<form id='containerComent_user' name="frmComent" method="post" action="<?php echo base_url().'/index.php/blog/update_comment'; ?>">
 						 					<?php if($coments->id_post == $entry->id_post) { ?>
-		
+												
+												<input type="hidden" name="id_coment" value=<?php echo $coments->id_comentario;?>>
 						                        <strong><?=$coments->nombre_comentarista?></strong><br>
 						                        <strong>Date:</strong> <?=$coments->fecha_comentario?>
-						                        <strong>Coment:</strong> <?=$coments->contenido_comentario?><br /> 
+						                        <strong>Coment:</strong> <?=$coments->contenido_comentario?>
+						                        <a href=""> ( Delete this comment)</a> <br /> 
 
 							                        <?php
 														if ($coments->estado == "n" ){ ?>
@@ -146,9 +148,7 @@
 															echo "<input type=checkbox disabled='true' name= 'approve' checked><hr>";
 														};
 													?>
-
-						                        
-						                        
+						                                    
 
 					                       		<?php }else{ ?>
 					                       	<!--<h5>no more coments</h5>-->

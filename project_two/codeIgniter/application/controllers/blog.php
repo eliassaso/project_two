@@ -142,6 +142,16 @@ class Blog extends CI_Controller {
 
     }
 
+    public function update_comment(){
+
+        $id_comment = $this->input->post('id_coment');
+        $this->blog_model->db_update_comment($id_comment);
+
+        //$this->load->view('edit_coment_show',$data);
+        $this->edit_coment();
+        //echo $id_comment;
+    }
+
 }
 
 /* End of file welcome.php */

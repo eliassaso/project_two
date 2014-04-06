@@ -92,5 +92,20 @@
  
     }
 
+    function db_update_comment($id_coment){
+    
+     try {
+
+            $this->db->query ("UPDATE comentario SET estado = 's'  WHERE id_comentario = ".$id_coment.";"); 
+       
+     } catch (Exception $e) {
+
+       echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+
+     }
+
+            //return "Insert sucessfully!!!";
+ 
+    }
  }
 ?>
