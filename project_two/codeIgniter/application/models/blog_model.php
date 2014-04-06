@@ -107,5 +107,21 @@
             //return "Insert sucessfully!!!";
  
     }
+
+    function db_delete_comment($id_coment){
+    
+     try {
+
+            $this->db->query ("DELETE FROM comentario WHERE id_comentario = ".$id_coment.";"); 
+       
+     } catch (Exception $e) {
+
+       echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+
+     }
+
+            //return "Insert sucessfully!!!";
+ 
+    }
  }
 ?>

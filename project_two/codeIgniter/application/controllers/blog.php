@@ -151,6 +151,12 @@ class Blog extends CI_Controller {
         $this->edit_coment();
         //echo $id_comment;
     }
+    public function delete_comment($id_coment){
+
+        $this->blog_model->db_delete_comment($id_coment);
+        $this->edit_coment();
+
+    }
 
 }
 

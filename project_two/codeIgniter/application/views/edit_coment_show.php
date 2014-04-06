@@ -136,7 +136,7 @@
 						                        <strong><?=$coments->nombre_comentarista?></strong><br>
 						                        <strong>Date:</strong> <?=$coments->fecha_comentario?>
 						                        <strong>Coment:</strong> <?=$coments->contenido_comentario?>
-						                        <a href=""> ( Delete this comment)</a> <br /> 
+						                        <a href="<?php echo base_url().'/index.php/blog/delete_comment/'.$coments->id_comentario; ?>"> ( Delete this comment)</a> <br /> 
 
 							                        <?php
 														if ($coments->estado == "n" ){ ?>
