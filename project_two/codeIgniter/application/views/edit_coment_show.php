@@ -79,7 +79,7 @@
 		}
 		#containerPost{
 			width: 95%;
-			height: 235px;
+			/*height: 250px;*/
 			padding-left: 2%; 
 			margin: 10px;
 			/*border: 1px solid #D0D0D0;
@@ -129,33 +129,38 @@
 
 								<?php foreach($coment as $coments) : ?>
 
-									 <form id='containerComent_user' name="frmComent" method="post" action="">
+									<form id='containerComent_user' name="frmComent" method="post" action="">
 						 					<?php if($coments->id_post == $entry->id_post) { ?>
-
-						 						<?php
-													if ($coments->estado == "n" ){ 
-														echo "<input type=checkbox name= 'approve' >";
-													}else{
-														echo "<input type=checkbox name= 'approve' checked>";
-													};
-												?>
-
-						 						
+		
 						                        <strong><?=$coments->nombre_comentarista?></strong><br>
 						                        <strong>Date:</strong> <?=$coments->fecha_comentario?>
-						                        <strong>Coment:</strong> <?=$coments->contenido_comentario?>	
-					                       	<?php }else{ ?>
+						                        <strong>Coment:</strong> <?=$coments->contenido_comentario?><br /> 
+
+							                        <?php
+														if ($coments->estado == "n" ){ ?>
+																
+															<input type="submit" name="approve" value="Approve"> <hr>
+
+
+													<?php	}else{
+															echo "<input type=checkbox disabled='true' name= 'approve' checked><hr>";
+														};
+													?>
+
+						                        
+						                        
+
+					                       		<?php }else{ ?>
 					                       	<!--<h5>no more coments</h5>-->
-					                       	<?php  } ?> 																                
+					                       		<?php  } ?> 					                     																	                
 			     					</form>   
 
-			     				<?php endforeach; ?>
-			     				<h3><input type="submit" name="approve" value="Approve"> </h3>
+			     				<?php endforeach; ?>			     				
 
 		     				</div>
 		     				<br><br><br><br>
 
-		     				<hr />
+		     				<hr size="5" color="#656565"/>
 	 	</form>
     <?php endforeach; ?>
 
