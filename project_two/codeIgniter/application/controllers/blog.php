@@ -201,6 +201,18 @@ class Blog extends CI_Controller {
 
         $this->load->view('blog_admin', $data);    
     }
+    public function load_blogger_show(){
+
+        $data['blogger'] = $this->blog_model->db_blogger();
+
+        $this->load->view('edit_blogger_show', $data);    
+    }
+    public function load_blog_show(){
+
+        $data['blog'] = $this->blog_model->db_blog(); 
+
+        $this->load->view('edit_blog_show', $data);    
+    }
 
 }
 

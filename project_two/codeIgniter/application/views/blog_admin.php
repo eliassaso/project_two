@@ -72,7 +72,7 @@
 	
 	#containerBlog{
 		width: 80%;
-		height: 80px;
+		height: 100px;
 		padding-left: 2%; 
 		margin: 10px;
 		border: 1px solid #D0D0D0;
@@ -104,23 +104,25 @@
 
 <div id="containerBlogger">
  
-		<FORM > 
+		<FORM name="frmBlogger" method="post" action="<?php echo base_url().'/index.php/blog/load_blogger_show'; ?>" > 
 			<h1><strong>BLOGGER DATA:</strong></h1>
 			<br><br><br>
 			<h1><strong>Name:  </strong><?php echo $blogger->nombre;?></h1>
 			<br><br><br>
 			<h1><strong>Bibliography:  </strong><?php echo $blogger->bibliografia; ?></h1>
 			<br><br><br>
-			<h1><a href=<?php echo $blogger->redes_sociales; ?> target="_blank">facebook Blogger</a></h1>
+			<h1><a href=<?php echo $blogger->redes_sociales; ?> target="_blank">facebook Blogger</a></h1><br><br><br>
+			<input type="submit" name="edit" value="Edit">
 		</FORM>
 
 </div>
 
 <div id="containerBlog">
-	<FORM name="frmBlog" method="post" action="" > 
+	<FORM name="frmBlog" method="post" action="<?php echo base_url().'/index.php/blog/load_blog_show'; ?>" > 
 		<h1><strong>BLOG DATA:</strong></h1>
 		<h1><strong>Name: </strong> <?php echo $blog->nombre_blog;?></h1>
-		<h1><strong>detail: </strong> <?php echo $blog->detalle; ?></h1>
+		<h1><strong>detail: </strong> <?php echo $blog->detalle; ?></h1><br><br><br>
+		<input type="submit" name="edit" value="Edit">
 	</FORM>
 </div>
 
