@@ -77,9 +77,18 @@
 			border: 1px solid #D0D0D0;
 			-webkit-box-shadow: 0 0 8px #D0D0D0;
 		}
+		#containerComent_user{
+			/*background-color: #FFFED3;*/
+			width: 95%;
+			/*height: 200px;*/
+			/*padding-left: 2%; 
+			margin: 10px;
+			/*border: 1px solid #D0D0D0;
+			-webkit-box-shadow: 0 0 8px #D0D0D0;*/
+		}
 		#containerPost{
 			width: 95%;
-			height: 200px;
+			/*height: 200px;*/
 			padding-left: 2%; 
 			margin: 10px;
 			/*border: 1px solid #D0D0D0;
@@ -95,6 +104,17 @@
 			-webkit-box-shadow: 0 0 8px #D0D0D0;
 		}
 		#containerComent{
+			width: 90%;
+			/*height: 60px;*/
+			padding-left: 2%; 
+			margin: 10px;
+			/*border: 1px solid #D0D0D0;
+			-webkit-box-shadow: 0 0 8px #D0D0D0;*/
+		}
+		#containerComentSays{
+			background-color: #E4E4E4;
+			border: 1px solid #D0D0D0;
+			-webkit-box-shadow: 0 0 8px #D0D0D0;
 			width: 90%;
 			height: 60px;
 			padding-left: 2%; 
@@ -147,12 +167,34 @@
                         <h2><?=$entry->titulo?></h2>
                         <h4>Date: <?=$entry->fecha?></h4>
                         Post: <?=$entry->contenido?><br />		
-					<div id="containerComent">
+					<div id="containerComentSays">
 						<h3><label>who says:</label><INPUT TYPE="text" PLACEHOLDER="Name" name="nombre_usuario"></h3>
                         <h3><textarea name="coment_post" type="textarea" rows="1" cols="80"> </textarea></h3>
                         <h3><input type="submit" name="comentario" value="Comment"> </h3>
-					</div>
-					<hr />
+					</div><br>
+						<div id="containerComent">	
+
+								<?php foreach($coment as $coments) : ?>
+
+									<form id='containerComent_user' name="frmComent" method="post" action="<?php echo base_url().'/index.php/blog/update_comment'; ?>">
+						 					<?php if($coments->id_post == $entry->id_post) { ?>
+												
+												<hr size="0.5" width="80%" align="left">
+												<input type="hidden" name="id_coment" value=<?php echo $coments->id_comentario;?>>
+						                        <strong><?=$coments->nombre_comentarista?></strong><br>
+						                        <strong>Date:</strong> <?=$coments->fecha_comentario?>
+						                        <strong>Coment:</strong> <?=$coments->contenido_comentario?>
+
+					                       		<?php }else{ ?>
+					                       	<!--<h5>no more coments</h5>-->
+					                       		<?php  } ?> 					                     																	                
+			     					</form>   
+
+			     				<?php endforeach; ?>			     				
+
+		     				</div>	
+
+					<hr size="5" color="#656565"/>
 						                 
      </form>
                 <?php endforeach; ?>

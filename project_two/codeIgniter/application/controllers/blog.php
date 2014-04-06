@@ -43,6 +43,7 @@ class Blog extends CI_Controller {
 		$data['blogger'] = $this->blog_model->db_blogger();
         $data['blog'] = $this->blog_model->db_blog();
         $data['post_blogger'] = $this->blog_model->db_post_blogger();
+        $data['coment'] = $this->blog_model->get_coment_approve();
 		$data['post'] = '';
 		$this->load->view('blog_show',$data);
 	}
@@ -59,6 +60,7 @@ class Blog extends CI_Controller {
         //$this->load->model('blog_model');
         $data['post'] = $this->blog_model->validate_credentials($frmLogin["user"], $frmLogin["pass"]);
         $data['post_blogger'] = $this->blog_model->db_post_blogger();
+        $data['coment'] = $this->blog_model->get_coment_approve();
         $data['blogger'] = $this->blog_model->db_blogger();
         $data['blog'] = $this->blog_model->db_blog();
 
@@ -108,11 +110,25 @@ class Blog extends CI_Controller {
         );
 		date_default_timezone_set('America/Costa_Rica');	
 		$frmPost['fecha'] = ($fecha = date("y-m-d"));
+        $data['blogger'] = $this->blog_model->db_blogger();
+        $data['blog'] = $this->blog_model->db_blog(); 
 
-		//$this->load->model('blog_model');
-		$result_insert = $this->blog_model->insert_content_post($frmPost);
-		//echo "$result_insert";
+        if (($frmPost['title'] == '') || ($frmPost['contenido'] == ' ')) {
+            
+            ?>
+                <script type="text/javascript"> 
+                    alert("check that the fields are full: 'Title' and 'content'")   
+                </script>
+            <?php
 
+             $this->load->view('blog_admin', $data); 
+
+        } else {               
+
+    		$result_insert = $this->blog_model->insert_content_post($frmPost);
+            $this->load->view('blog_admin', $data);    
+
+        }
 	}
 
 	public function insert_coment(){
@@ -122,15 +138,28 @@ class Blog extends CI_Controller {
         'nombre_usuario' => $this->input->post('nombre_usuario'),
         'coment_post' => $this->input->post('coment_post'),
         );
+
+        if (($frmPostEntry['nombre_usuario'] == '') || ($frmPostEntry['coment_post'] == ' ')) {
+            
+
+            ?>
+                <script type="text/javascript"> 
+                    alert("check that the fields are full: 'who says' and 'comment'") 
+                    window.location.href = "<?php echo base_url().'/index.php'?>";   
+                </script>
+            <?php
+
+
+        } else {
+             
 		date_default_timezone_set('America/Costa_Rica');	
 		$frmPostEntry['fecha_comentario'] = ($fecha = date("y-m-d"));
 		$frmPostEntry['estado'] = "n";
 
-		//print_r($frmPostEntry);
 		$this->blog_model->insert_coment($frmPostEntry);
-		//$result_insert = $this->blog_model->inser_content_post($frmPost);
-		//echo "$result_insert";
+        $this->index();
 
+        }    
 	}
 
     public function edit_coment(){
@@ -156,6 +185,21 @@ class Blog extends CI_Controller {
         $this->blog_model->db_delete_comment($id_coment);
         $this->edit_coment();
 
+    }
+    //cuando se elimina un post se deben eliminar sus comentarios
+    public function delete_post($id_post){
+
+        $this->blog_model->db_delete_post($id_post);
+        $this->edit_coment();
+
+    }    
+
+    public function reload_admin_show(){
+
+        $data['blogger'] = $this->blog_model->db_blogger();
+        $data['blog'] = $this->blog_model->db_blog(); 
+
+        $this->load->view('blog_admin', $data);    
     }
 
 }

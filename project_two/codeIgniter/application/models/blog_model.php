@@ -25,20 +25,20 @@
                 return 'incorrect';
             } 
     }
-        function db_blogger(){
+    function db_blogger(){
 
             $queryBlogger = $this->db->get('blogger');
             return $queryBlogger->row();
 
     }
-        function db_blog(){
+    function db_blog(){
 
             $queryBlog= $this->db->get('blog');         
             return $queryBlog->row();
 
  
     }
-        function db_post_blogger(){
+    function db_post_blogger(){
 
             //$queryPostBlogger = $this->db->query("SELECT * from post;");         
             //return $queryPostBlogger->row();
@@ -48,15 +48,23 @@
 
  
     }
-        function get_coment_post(){
+    function get_coment_approve(){
+    
+      try {
+             return $this->db->query("SELECT * FROM comentario WHERE estado = 's';")->result();  
+
+            } catch (Exception $e) {
+
+              echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+            }      
+
+              
+
+ 
+    }
+    function get_coment_post(){
     
             return $this->db->get('comentario')->result();    
-     //$this->db->query("SELECT * FROM comentario");   
-        //print_r("INSERT INTO post (id_blog, id_blogger, titulo, fecha, contenido) 
-                               /*VALUES (".$db_post['id_blog'].", ".$db_post['id_blogger'].", 
-                                      '".$db_post['title']."','".$db_post['fecha']."',
-                                      '".$db_post['contenido']."')");*/
-            //return "Insert sucessfully!!!";
  
     }
 
@@ -110,18 +118,30 @@
 
     function db_delete_comment($id_coment){
     
-     try {
+       try {
 
-            $this->db->query ("DELETE FROM comentario WHERE id_comentario = ".$id_coment.";"); 
-       
-     } catch (Exception $e) {
+              $this->db->query ("DELETE FROM comentario WHERE id_comentario = ".$id_coment.";"); 
+         
+       } catch (Exception $e) {
 
-       echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+         echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 
-     }
-
-            //return "Insert sucessfully!!!";
- 
+       }
     }
+
+    function db_delete_post($id_post){
+    
+       try {
+
+              $this->db->query ("DELETE FROM comentario WHERE id_post = ".$id_post.";");
+              $this->db->query ("DELETE FROM post WHERE id_post = ".$id_post.";");  
+         
+       } catch (Exception $e) {
+
+         echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+
+       }
+    }
+
  }
 ?>

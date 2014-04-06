@@ -16,6 +16,10 @@
 		font: 13px/20px normal Helvetica, Arial, sans-serif;
 		color: #4F5155;
 	}
+	header{
+		width: 80%;
+		height: 50px;
+	}
 
 	a {
 		color: #003399;
@@ -82,14 +86,24 @@
 		border: 1px solid #D0D0D0;
 		-webkit-box-shadow: 0 0 8px #D0D0D0;
 	}
+	#return{
+		
+	}
+	#div_header{
+		float: right;
+		margin-left: 2%;
+	}
 	</style>
 </head>
+<header>
+		<div id="div_header"><h2><a id='return' href="<?php echo base_url().'/index.php' ?>">Log Out</a></h2></div>
+		<div id="div_header"><h2><a id='return' href="<?php echo base_url().'/index.php/blog/edit_coment'; ?>">Blog Edit </a> </h2></div>
+</header>
+
 <body>
 
 <div id="containerBlogger">
-	
-		<h4>Logger:<?php echo $post->user; ?></h4>
-
+ 
 		<FORM > 
 			<h1><strong>BLOGGER DATA:</strong></h1>
 			<br><br><br>
@@ -128,9 +142,6 @@
 		<h2>Post:</h2> <textarea name="post_blogger" type="textarea" rows="4" cols="120"> </textarea>
 		<input type="submit" name="consultar" value="Create">
 
-	</FORM>
-	<FORM name="frmEditComment" method="post" action="<?php echo base_url().'/index.php/blog/edit_coment'; ?>" > 
-				<input type="submit" name="editComment" value="Blog Comments Edit">
 	</FORM>
 </div>
 

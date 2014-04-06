@@ -15,6 +15,11 @@
 			font: 13px/20px normal Helvetica, Arial, sans-serif;
 			color: #4F5155;
 		}
+		
+		header{
+		width: 80%;
+		height: 50px;
+		}
 
 		a {
 			color: #003399;
@@ -110,17 +115,25 @@
 			/*border: 1px solid #D0D0D0;
 			-webkit-box-shadow: 0 0 8px #D0D0D0;*/
 		}
+		#div_header{
+		float: right;
+		margin-left: 2%;
+		}
 
 	</style>
 </head>
 <body>
 
-
+<header>
+	<div id="div_header"><h2><a id='return' href="<?php echo base_url().'/index.php' ?>">Log Out</a></h2></div>
+	<div id="div_header"><h2><a id='return' href="<?php echo base_url().'/index.php/blog/reload_admin_show' ?>">Return</a></h2></div>
+</header>
 
 
 	<?php foreach($post_blogger as $entry) : ?>
 		 <form id='containerPost' name="frmPostEntry" method="post" action="">
 		 					<input type="hidden" name="id_post" value=<?php echo $entry->id_post;?>>
+		 					<a href="<?php echo base_url().'/index.php/blog/delete_post/'.$entry->id_post; ?>"> ( Delete Post)</a> <br /> 
 	                        <h2><?=$entry->titulo?></h2>
 	                        <h4>Date: <?=$entry->fecha?></h4>
 	                        Post: <?=$entry->contenido?><br />	<br />	<br />	
@@ -136,7 +149,7 @@
 						                        <strong><?=$coments->nombre_comentarista?></strong><br>
 						                        <strong>Date:</strong> <?=$coments->fecha_comentario?>
 						                        <strong>Coment:</strong> <?=$coments->contenido_comentario?>
-						                        <a href="<?php echo base_url().'/index.php/blog/delete_comment/'.$coments->id_comentario; ?>"> ( Delete this comment)</a> <br /> 
+						                        <a href="<?php echo base_url().'/index.php/blog/delete_comment/'.$coments->id_comentario; ?>"> ( Delete comment)</a> <br /> 
 
 							                        <?php
 														if ($coments->estado == "n" ){ ?>
@@ -145,7 +158,7 @@
 
 
 													<?php	}else{
-															echo "<input type=checkbox disabled='true' name= 'approve' checked><hr>";
+															echo "State: <input type=checkbox disabled='true' name= 'approve' checked><hr>";
 														};
 													?>
 						                                    
@@ -163,9 +176,6 @@
 		     				<hr size="5" color="#656565"/>
 	 	</form>
     <?php endforeach; ?>
-
-    					
-     				
 
 </body>
 </html>
