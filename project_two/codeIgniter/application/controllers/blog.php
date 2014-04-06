@@ -133,6 +133,15 @@ class Blog extends CI_Controller {
 
 	}
 
+    public function edit_coment(){
+
+        $data['post_blogger'] = $this->blog_model->db_post_blogger();
+        $data['coment'] = $this->blog_model->get_coment_post();
+        //print_r($data['coment']);
+        $this->load->view('edit_coment_show',$data);
+
+    }
+
 }
 
 /* End of file welcome.php */

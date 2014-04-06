@@ -142,7 +142,7 @@
 	?>
 
 	 <?php foreach($post_blogger as $entry) : ?>
-	 <form id='containerPost' name="frmPostEntry" method="post" action="<?php echo 'index.php/blog/insert_coment'; ?>">
+	 <form id='containerPost' name="frmPostEntry" method="post" action="<?php echo base_url().'/index.php/blog/insert_coment'; ?>">
 	 					<input type="hidden" name="id_post" value=<?php echo $entry->id_post;?>>
                         <h2><?=$entry->titulo?></h2>
                         <h4>Date: <?=$entry->fecha?></h4>

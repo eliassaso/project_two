@@ -129,7 +129,7 @@
 		<input type="submit" name="consultar" value="Create">
 
 	</FORM>
-	<FORM name="frmEditComment" method="post" action="" > 
+	<FORM name="frmEditComment" method="post" action="<?php echo base_url().'/index.php/blog/edit_coment'; ?>" > 
 				<input type="submit" name="editComment" value="Blog Comments Edit">
 	</FORM>
 </div>

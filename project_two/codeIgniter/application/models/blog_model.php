@@ -48,6 +48,17 @@
 
  
     }
+        function get_coment_post(){
+    
+            return $this->db->get('comentario')->result();    
+     //$this->db->query("SELECT * FROM comentario");   
+        //print_r("INSERT INTO post (id_blog, id_blogger, titulo, fecha, contenido) 
+                               /*VALUES (".$db_post['id_blog'].", ".$db_post['id_blogger'].", 
+                                      '".$db_post['title']."','".$db_post['fecha']."',
+                                      '".$db_post['contenido']."')");*/
+            //return "Insert sucessfully!!!";
+ 
+    }
 
     function insert_content_post($db_post){
 
@@ -80,5 +91,6 @@
             //return "Insert sucessfully!!!";
  
     }
+
  }
 ?>
