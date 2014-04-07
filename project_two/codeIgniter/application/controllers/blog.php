@@ -213,6 +213,36 @@ class Blog extends CI_Controller {
 
         $this->load->view('edit_blog_show', $data);    
     }
+    public function update_blogger(){
+
+        $frmBlogger = array(
+
+            'user' => $this->input->post('user'),
+            'bibliography' => $this->input->post('bibliography'),
+            'social_networks' => $this->input->post('social_networks')
+
+            );
+
+        $this->blog_model->db_update_blogger($frmBlogger);
+        $this->reload_admin_show();
+        //$this->load->view('edit_coment_show',$data);
+        //$this->edit_coment();
+        //echo $id_comment;
+    }
+    public function update_blog(){
+
+        $frmBlog = array(
+
+            'name_blog' => $this->input->post('name_blog'),
+            'detail' => $this->input->post('detail'),
+            );
+
+        $this->blog_model->db_update_blog($frmBlog);
+        $this->reload_admin_show();
+        //$this->load->view('edit_coment_show',$data);
+        //$this->edit_coment();
+        //echo $id_comment;
+    }
 
 }
 

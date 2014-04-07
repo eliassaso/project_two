@@ -42,11 +42,13 @@
 
             //$queryPostBlogger = $this->db->query("SELECT * from post;");         
             //return $queryPostBlogger->row();
+            
+            //$this->db->query('SELECT * FROM post ORDER BY fecha DESC');
+            //$this->db->order_by('fecha DESC');
+            //return $this->db->get('post')->result();
+            return $this->db->query('SELECT * FROM post ORDER BY id_post DESC')->result();
 
-            $this->db->order_by('fecha DESC');
-            return $this->db->get('post')->result();
-
- 
+  
     }
     function get_coment_approve(){
     
@@ -111,6 +113,41 @@
        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 
      }
+
+            //return "Insert sucessfully!!!";
+ 
+    }
+    function db_update_blogger($dataSet_blogger){
+    
+         try {
+
+                $this->db->query ("UPDATE blogger SET nombre = '".$dataSet_blogger['user']."',
+                                                      bibliografia = '".$dataSet_blogger['bibliography']."',
+                                                      redes_sociales = '".$dataSet_blogger['social_networks']."'  
+                                  WHERE  id_blogger = 1;"); 
+           
+         } catch (Exception $e) {
+
+           echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+
+         }
+
+            //return "Insert sucessfully!!!";
+ 
+    }
+    function db_update_blog($dataSet_blog){
+    
+         try {
+
+                $this->db->query ("UPDATE blog SET nombre_blog = '".$dataSet_blog['name_blog']."',
+                                                      detalle = '".$dataSet_blog['detail']."' 
+                                  WHERE  id_blog = 1;"); 
+           
+         } catch (Exception $e) {
+
+           echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+
+         }
 
             //return "Insert sucessfully!!!";
  

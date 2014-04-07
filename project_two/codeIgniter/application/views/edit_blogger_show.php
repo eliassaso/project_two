@@ -16,7 +16,10 @@
 			font: 13px/20px normal Helvetica, Arial, sans-serif;
 			color: #4F5155;
 		}
-
+		header{
+			width: 80%;
+			height: 50px;
+		}
 		a {
 			color: #003399;
 			background-color: transparent;
@@ -71,8 +74,8 @@
 		
 		#containerBlog{
 			background-color: #DDF5FF;
-			width: 95%;
-			height: 260px;
+			width: 80%;
+			height: 330px;
 			padding-left: 2%; 
 			margin: 10px;
 			border: 1px solid #D0D0D0;
@@ -123,19 +126,27 @@
 			/*border: 1px solid #D0D0D0;
 			-webkit-box-shadow: 0 0 8px #D0D0D0;*/
 		}
+		#div_header{
+			float: right;
+			margin-left: 2%;
+		}
 
 	</style>
 </head>
 <body>
+	<header>
+			<div id="div_header"><h2><a id='return' href="<?php echo base_url().'/index.php/blog/reload_admin_show' ?>">Return</a></h2></div>
+	</header>
 
 <div id="containerBlog">
 
-			<h2><strong>BLOGGER DATA:</strong></h2><br>
-
+	<h2><strong>BLOGGER DATA:</strong></h2><br><hr>
+		<FORM name="frmBlogger" method="post" action="<?php echo base_url().'/index.php/blog/update_blogger'; ?>" > 
 			<h3>Name:  <h3><INPUT TYPE="text" size="50" name="user" value="<?php echo $blogger->nombre;?>"></h3></h3><br><br><br>
-			<h3>bibliography:  <h3><INPUT TYPE="text" size="80" name="user" value="<?php echo $blogger->bibliografia;?>"></h3><br><br><br>
-			<h3>social networks:  <h3><INPUT TYPE="text" size="50" name="user" value="<?php echo $blogger->redes_sociales;?>"></h3></h3>
-
+			<h3>Bibliography:  <h3><INPUT TYPE="text" size="80" name="bibliography" value="<?php echo $blogger->bibliografia;?>"></h3><br><br><br>
+			<h3>Social networks:  <h3><INPUT TYPE="text" size="50" name="social_networks" value="<?php echo $blogger->redes_sociales;?>"></h3></h3><br><br><br><hr>
+			<h3><input type="submit" name="edit" value="Accept"></h3>
+		</FORM>
 </div>
 	
 </body>
