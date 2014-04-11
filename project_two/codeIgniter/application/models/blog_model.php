@@ -11,19 +11,16 @@
 
     }
 	function validate_credentials($username, $password){
-            //query = $this->db->where('user', $username);
-            //$query = $this->db->where('pass', $password);
-            //$query = $this->db->get('usuario');
-            //$query = $this->db->where('usuario', ('pass' => $password));
-            $queryUsuario = $this->db->query("SELECT * FROM usuario where user = '$username' and pass = $password");
 
-            if ($queryUsuario->num_rows == 1) {           
+            $queryUsuario = $this->db->query("SELECT * FROM usuario where user = '$username' and pass = $password");
+			return $queryUsuario->row();
+            /*if ($queryUsuario->num_rows == 1) {           
                     return $queryUsuario->row();
 
             }else{
 
                 return 'incorrect';
-            } 
+            } */
     }
     function db_blogger(){
 

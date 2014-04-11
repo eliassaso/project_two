@@ -46,6 +46,7 @@ class Blog extends CI_Controller {
         $data['coment'] = $this->blog_model->get_coment_approve();
 		$data['post'] = '';
 		$this->load->view('blog_show',$data);
+		
 	}
  	
  	public function consultPassword()
@@ -62,42 +63,27 @@ class Blog extends CI_Controller {
         $data['post_blogger'] = $this->blog_model->db_post_blogger();
         $data['coment'] = $this->blog_model->get_coment_approve();
         $data['blogger'] = $this->blog_model->db_blogger();
-        $data['blog'] = $this->blog_model->db_blog();
+        $data['blog'] = $this->blog_model->db_blog();    
 
-        //$this->id_blog = $data['blog']->id_blog;
-        //$this->id_blogger = $data['blogger']->id_blogger;
-
-        //print_r($data['blog']->nombre_blog);
-        //echo $this->id_blog;
-        
-
-        	if ($data['post'] !== 'incorrect') :
+        	/*if ($data['post'] !== 'incorrect') :
         				
         			$this->load->view('blog_admin', $data);	
         		//print_r(base_url());
         	 else :
         	 		$data['post'] = "incorrect user or password";
         			$this->load->view('blog_show',$data);
-        			//redirect(base_url());
+        			//redirect(base_url(),$data);
         			//redirect("index.php");
-        			endif;				
+        			endif;	*/
+        if(count($data['post']) > 0){
+        	$this->load->view('blog_admin', $data);
+			
+        }	else {
+			redirect(base_url());
+			
+		}					
         	
 
-        //$this->load->view(‘blog/list_posts’,$data);
-
-
-       
-
-
-        //$user = $this->validate_credentials($frmLogin["user"], $frmLogin["pass"]);
-        //var_dump($user);
-
-
-            /*if($user = $this->validate_credentials($frmLogin["user"], $frmLogin["pass"])){
-                redirect(base_url());
-            }else{
-                $this->load->view('blog_show', array('error'=>TRUE));
-            }*/
     	}
 
 	public function insert_post(){
