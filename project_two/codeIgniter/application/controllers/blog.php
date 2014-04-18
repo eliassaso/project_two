@@ -70,7 +70,7 @@ class Blog extends CI_Controller {
         			$this->load->view('blog_admin', $data);	
         		//print_r(base_url());
         	 else :
-        	 		$data['post'] = "incorrect user or password";
+        	 		$data['post'] = "incorrect";
         			$this->load->view('blog_show',$data);
         			endif;	
 					
@@ -143,6 +143,8 @@ class Blog extends CI_Controller {
 		$frmPostEntry['estado'] = "n";
 
 		$this->blog_model->insert_coment($frmPostEntry);
+		$this->send_mail($frmPostEntry);
+		//se llama a la funcion de enviar correo
         $this->index();
 
         }    
@@ -229,6 +231,60 @@ class Blog extends CI_Controller {
         //$this->edit_coment();
         //echo $id_comment;
     }
+	
+	public function send_mail($coment){
+		
+			//se verifica que el archivo exista y este bien escrito!!
+		///$str_datos = file_get_contents("config.json");
+	
+		$str_datos = file_get_contents("/var/www/php/project_two/codeIgniter/application/controllers/jsonFile.json");
+	
+		//se decodifican los datos del archivo json.
+		$datos = json_decode($str_datos,true);
+		//se crean las variables para cada uno de los valores del json para mas orden
+		$ip_server = $datos['data_base']['ip_server'];
+		$db_user = $datos['data_base']['user'];
+		$db_pass = $datos['data_base']['pass'];
+		 
+		$senders = $datos['mail']['senders'];
+		$pass = $datos['mail']['pass'];
+		$server = $datos['mail']['server'];
+		$receives = $datos['mail']['receives'];
+			
+		//se envia el correo con el protocolo SMTP
+		require("class.phpmailer.php");
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->SMTPAuth = true;
+		$mail->SMTPSecure = "tls";
+		$mail->Host = $server; // SMTP a utilizar. Por ej. smtp.elserver.com
+		$mail->Username = $senders; // Correo completo a utilizar
+		$mail->Password = $pass; // Contraseña
+		$mail->Port = 587; // Puerto a utilizar
+		$mail->From = "eliassaso@gmail.com"; // Desde donde enviamos (Para mostrar)
+		$mail->FromName = "Elias";//"ELSERVER.COM";
+		$mail->AddAddress($receives);//("eliassaso@gmail.com"); // Esta es la dirección a donde enviamos
+		$mail->AddCC("");//("cuenta@dominio.com"); // Copia
+		$mail->AddBCC("");//("cuenta@dominio.com"); // Copia oculta
+		$mail->IsHTML(true); // El correo se envía como HTML
+		$mail->Subject = "New comment"; // Este es el titulo del email.
+		$body = "<h1 style='color:blue'>idPost:".$coment['id_post']." --  User:  ".$coment['nombre_usuario']." --   Content: ".$coment['coment_post']."</h1>";
+		//$body .= "<h1 style='color:blue'>Number of registered students = **** $fila **** </h1>";
+		$mail->Body = $body; // Mensaje a enviar
+		$mail->AltBody = "Hola mundo. Esta es la primer línean Acá continuo el mensaje"; // Texto sin html
+		$mail->AddAttachment("");//("imagenes/imagen.jpg", "imagen.jpg");
+		$exito = $mail->Send(); // Envía el correo.
+
+		/*if($exito){
+			echo "\n\n*******Connected successfully!!!  The mail was sent.************\n\n";
+		}else{
+			echo "There was a drawback. Contact an administrator.\n";
+		}*/
+		
+		//var_dump('idPost: '.$coment['id_post'].' --  User: '.$coment['nombre_usuario'].' --   Content: '.$coment['coment_post']);
+		
+	}
+
 
 }
 

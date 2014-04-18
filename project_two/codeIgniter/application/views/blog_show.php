@@ -17,7 +17,7 @@
 		}
 
 		a {
-			color: #003399;
+			color: white;
 			background-color: transparent;
 			font-weight: normal;
 		}
@@ -69,9 +69,9 @@
 		}
 		
 		#containerBlog{
-			background-color: #DDF5FF;
+			background-color: black;
 			width: 95%;
-			height: 260px;
+			height: 225px;
 			padding-left: 2%; 
 			margin: 10px;
 			border: 1px solid #D0D0D0;
@@ -95,13 +95,24 @@
 			-webkit-box-shadow: 0 0 8px #D0D0D0;*/
 		}
 		#container{
-			background-color: #D6D6D6;
-			width: 90%;
+			background-color: #FFFFFF;
+			width: 70%;
 			height: 70px;
 			padding-left: 2%; 
 			margin: 10px;
 			border: 1px solid #D0D0D0;
 			-webkit-box-shadow: 0 0 8px #D0D0D0;
+		}
+		#container_login{
+			background-color: #D6D6D6;
+			width: 18%;
+			height: 200px;
+			padding-left: 2%; 
+			margin: 10px;
+			border: 1px solid #D0D0D0;
+			-webkit-box-shadow: 0 0 8px #D0D0D0;
+			float: right;
+			
 		}
 		#containerComent{
 			width: 90%;
@@ -122,6 +133,11 @@
 			/*border: 1px solid #D0D0D0;
 			-webkit-box-shadow: 0 0 8px #D0D0D0;*/
 		}
+		#h5_ref{
+			margin-left: 60%;
+			text-decoration: none;
+			color: #ffffff;
+		}
 
 	</style>
 </head>
@@ -131,26 +147,30 @@
 
 
 <div id="containerBlog">
-	<div id="container">
+	<div id="container_login">
 		<FORM name="frmLogin" method="post" action="<?php echo base_url().'/index.php/blog/consultPassword'; ?>" > 
-			<h3>logging of administrator blog: </h3><BR>
-			<h3><label>User:</label><INPUT TYPE="text" PLACEHOLDER="User Name" name="user" value="admin"></h3>
-			<h3><label>Password:</label><INPUT TYPE="PASSWORD" PLACEHOLDER="Password" name="pass" value="123"></h3>
+			<h3>logging of administrator blog: </h3><BR><BR><BR>
+				
+				User:<section><INPUT TYPE="text" PLACEHOLDER="User Name" name="user" value="admin"></h3></section>
+				Password:<section><INPUT TYPE="PASSWORD" PLACEHOLDER="Password" name="pass" value="123"></h3></section>
+				
 			<h3><input type="submit" name="consultar" value="Sign in"></h3>
 			<label><h1><?php echo $post;  //echo $message ?></h1></label>
+			
 		</FORM>
 	</div>	
 	<div id="container">
-			<h1><strong>BLOGGER DATA:</strong></h1>
+			<h1><strong>BLOGGER:</strong></h1>
 			<h1><strong>Name:  </strong><?php echo $blogger->nombre;?></h1>
 			<h1><strong>Bibliography:  </strong><?php echo $blogger->bibliografia; ?></h1>
-			<h1><a href=<?php echo $blogger->redes_sociales; ?> target="_blank">facebook Blogger</a></h1>
+			
 	</div>
 	<div id="container">
-			<h1><strong>BLOG DATA:</strong></h1>
+			<h1><strong>BLOG:</strong></h1>
 			<h1><strong>Name: </strong> <?php echo $blog->nombre_blog;?></h1>
 			<h1><strong>detail: </strong> <?php echo $blog->detalle; ?></h1>
 	</div>
+	<h5 id="h5_ref"><a href=<?php echo $blogger->redes_sociales; ?> target="_blank">facebook Blogger</a></h5>
 </div>
 
 

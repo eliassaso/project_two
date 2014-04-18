@@ -11,7 +11,7 @@
 	::webkit-selection{ background-color: #E13300; color: white; }
 
 	body {
-		background-color: #fff;
+		background-color: #979797;
 		margin: 40px;
 		font: 13px/20px normal Helvetica, Arial, sans-serif;
 		color: #4F5155;
@@ -62,6 +62,7 @@
 		margin: 20px 0 0 0;
 	}
 	#containerPost{
+		background-color: white;
 		width: 80%;
 		height: 290px;
 		padding-left: 2%; 
@@ -71,20 +72,36 @@
 	}
 	
 	#containerBlog{
+		/*background-color: white;
 		width: 80%;
 		height: 100px;
 		padding-left: 2%; 
 		margin: 10px;
 		border: 1px solid #D0D0D0;
-		-webkit-box-shadow: 0 0 8px #D0D0D0;
+		-webkit-box-shadow: 0 0 8px #D0D0D0;*/
+			background-color: #FFFFFF;
+			width: 80%;
+			height: 90px;
+			padding-left: 2%; 
+			margin: 10px;
+			border: 1px solid #D0D0D0;
+			-webkit-box-shadow: 0 0 8px #D0D0D0;
 	}
 	#containerBlogger{
+		/*background-color: white;
 		width: 80%;
 		height: 290px;
 		padding-left: 2%; 
 		margin: 10px;
 		border: 1px solid #D0D0D0;
-		-webkit-box-shadow: 0 0 8px #D0D0D0;
+		-webkit-box-shadow: 0 0 8px #D0D0D0;*/
+			background-color: #FFFFFF;
+			width: 80%;
+			height: 90px;
+			padding-left: 2%; 
+			margin: 10px;
+			border: 1px solid #D0D0D0;
+			-webkit-box-shadow: 0 0 8px #D0D0D0;
 	}
 	#return{
 		
@@ -93,6 +110,8 @@
 		float: right;
 		margin-left: 2%;
 	}
+		
+
 	</style>
 </head>
 <header>
@@ -105,12 +124,16 @@
 <div id="containerBlogger">
  
 		<FORM name="frmBlogger" method="post" action="<?php echo base_url().'/index.php/blog/load_blogger_show'; ?>" > 
-			<h1><strong>BLOGGER DATA:</strong></h1>
+			<!--<h1><strong>BLOGGER DATA:</strong></h1>
 			<br><br><br>
 			<h1><strong>Name:  </strong><?php echo $blogger->nombre;?></h1>
 			<br><br><br>
 			<h1><strong>Bibliography:  </strong><?php echo $blogger->bibliografia; ?></h1>
-			<br><br><br>
+			<br><br><br></br>-->
+			<h1><strong>BLOGGER:</strong></h1>
+			<h1><strong>Name:  </strong><?php echo $blogger->nombre;?></h1>
+			<h1><strong>Bibliography:  </strong><?php echo $blogger->bibliografia; ?></h1>
+			
 			<h1><a href=<?php echo $blogger->redes_sociales; ?> target="_blank">facebook Blogger</a></h1><br><br><br>
 			<input type="submit" name="edit" value="Edit">
 		</FORM>
@@ -119,7 +142,7 @@
 
 <div id="containerBlog">
 	<FORM name="frmBlog" method="post" action="<?php echo base_url().'/index.php/blog/load_blog_show'; ?>" > 
-		<h1><strong>BLOG DATA:</strong></h1>
+		<h1><strong>BLOG:</strong></h1>
 		<h1><strong>Name: </strong> <?php echo $blog->nombre_blog;?></h1>
 		<h1><strong>detail: </strong> <?php echo $blog->detalle; ?></h1><br><br><br>
 		<input type="submit" name="edit" value="Edit">
