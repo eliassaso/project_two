@@ -236,6 +236,7 @@ class Blog extends CI_Controller {
 		
 			//se verifica que el archivo exista y este bien escrito!!
 		///$str_datos = file_get_contents("config.json");
+ 
 	
 		$str_datos = file_get_contents("/var/www/php/project_two/codeIgniter/application/controllers/jsonFile.json");
 	
@@ -271,7 +272,7 @@ class Blog extends CI_Controller {
 		$body = "<h1 style='color:blue'>idPost:".$coment['id_post']." --  User:  ".$coment['nombre_usuario']." --   Content: ".$coment['coment_post']."</h1>";
 		//$body .= "<h1 style='color:blue'>Number of registered students = **** $fila **** </h1>";
 		$mail->Body = $body; // Mensaje a enviar
-		$mail->AltBody = "Hola mundo. Esta es la primer línean Acá continuo el mensaje"; // Texto sin html
+		$mail->AltBody = "You have a new comment"; // Texto sin html
 		$mail->AddAttachment("");//("imagenes/imagen.jpg", "imagen.jpg");
 		$exito = $mail->Send(); // Envía el correo.
 

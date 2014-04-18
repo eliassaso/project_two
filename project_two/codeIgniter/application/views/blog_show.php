@@ -174,7 +174,7 @@
 </div>
 
 
-	<?php /*
+	<?php  /*
 		foreach ( $post_blogger as $post_print){
 		echo "<div id='containerPost'>
 			  <form>".print_r($post_print)."</form>

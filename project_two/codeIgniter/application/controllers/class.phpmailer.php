@@ -461,7 +461,7 @@ class PHPMailer {
       if ($this->exceptions) {
         throw new phpmailerException($this->Lang('invalid_address').': '.$address);
       }
-      echo $this->Lang('invalid_address').': '.$address;
+      echo $this->Lang('invalid_address').' '.$address;
       return false;
     }
     if ($kind != 'ReplyTo') {
@@ -859,13 +859,13 @@ class PHPMailer {
       'recipients_failed' => 'SMTP Error: The following recipients failed: ',
       'data_not_accepted' => 'SMTP Error: Data not accepted.',
       'connect_host' => 'SMTP Error: Could not connect to SMTP host.',
-      'file_access' => 'Could not access file: ',
+      'file_access' => '',
       'file_open' => 'File Error: Could not open file: ',
       'encoding' => 'Unknown encoding: ',
       'signing' => 'Signing Error: ',
       'smtp_error' => 'SMTP server error: ',
       'empty_message' => 'Message body empty',
-      'invalid_address' => 'Invalid address',
+      'invalid_address' => '',
       'variable_set' => 'Cannot set or reset variable: '
     );
     //Overwrite language-specific strings. This way we'll never have missing translations - no more "language string failed to load"!
