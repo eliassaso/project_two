@@ -65,23 +65,23 @@ class Blog extends CI_Controller {
         $data['blogger'] = $this->blog_model->db_blogger();
         $data['blog'] = $this->blog_model->db_blog();    
 
-        	/*if ($data['post'] !== 'incorrect') :
+        	if (count($data['post']) > 0) :
         				
         			$this->load->view('blog_admin', $data);	
         		//print_r(base_url());
         	 else :
         	 		$data['post'] = "incorrect user or password";
         			$this->load->view('blog_show',$data);
-        			//redirect(base_url(),$data);
-        			//redirect("index.php");
-        			endif;	*/
-        if(count($data['post']) > 0){
+        			endif;	
+					
+        /*if(count($data['post']) > 0){
         	$this->load->view('blog_admin', $data);
 			
         }	else {
-			redirect(base_url());
+        	$message = "incorrect";
+			redirect(base_url()/$message);
 			
-		}					
+		}*/					
         	
 
     	}

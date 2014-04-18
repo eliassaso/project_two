@@ -10,7 +10,7 @@
 		::webkit-selection{ background-color: #E13300; color: white; }
 
 		body {
-			background-color: #fff;
+			background-color: white;
 			margin: 40px;
 			font: 13px/20px normal Helvetica, Arial, sans-serif;
 			color: #4F5155;
@@ -129,6 +129,7 @@
 
 
 
+
 <div id="containerBlog">
 	<div id="container">
 		<FORM name="frmLogin" method="post" action="<?php echo base_url().'/index.php/blog/consultPassword'; ?>" > 
@@ -136,7 +137,7 @@
 			<h3><label>User:</label><INPUT TYPE="text" PLACEHOLDER="User Name" name="user" value="admin"></h3>
 			<h3><label>Password:</label><INPUT TYPE="PASSWORD" PLACEHOLDER="Password" name="pass" value="123"></h3>
 			<h3><input type="submit" name="consultar" value="Sign in"></h3>
-			<label><h1><?php echo $post ?></h1></label>
+			<label><h1><?php echo $post;  //echo $message ?></h1></label>
 		</FORM>
 	</div>	
 	<div id="container">
