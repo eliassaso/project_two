@@ -178,14 +178,6 @@
 </div>
 
 
-	<?php  /*
-		foreach ( $post_blogger as $post_print){
-		echo "<div id='containerPost'>
-			  <form>".print_r($post_print)."</form>
-			  </div>";
-		} */
-	?>
-
 	 <?php foreach($post_blogger as $entry) : ?>
 	 <form id='containerPost' name="frmPostEntry" method="post" action="<?php echo base_url().'/index.php/blog/insert_coment'; ?>">
 	 					<input type="hidden" name="id_post" value=<?php echo $entry->id_post;?>>
@@ -196,36 +188,7 @@
 						<!--<h3><label>who says:</label><INPUT TYPE="text" PLACEHOLDER="Name" name="nombre_usuario"></h3>-->
                         <h3><textarea name="coment_post" type="textarea" rows="1" cols="80"> </textarea></h3>
                         <h3><input type="submit" name="comentario" value="Comment"> </h3>
-
-                        
-
-
-
-<!--<script type="text/javascript">
-		
-
-
-$(function() {
-  $.ajax({
-    url: '//connect.facebook.net/es_ES/all.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      FB.init({
-        appId: '688464854525247',
-        xfbml: true
-      });
-      FB.Event.subscribe('auth.authResponseChange', function(response) {
-        if (response && response.status == 'connect') {
-          FB.api('/me', function(response) {
-            alert('Nombre: ' + data.name);
-          });
-        }
-      });
-    }
-  });
-});
-	</script>-->
+              
 					</div><br>
 						<div id="containerComent">	
 

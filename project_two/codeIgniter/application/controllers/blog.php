@@ -73,17 +73,7 @@ class Blog extends CI_Controller {
         	 else :
         	 		$data['post'] = "incorrect";
         			$this->load->view('blog_show',$data);
-        			endif;	
-					
-        /*if(count($data['post']) > 0){
-        	$this->load->view('blog_admin', $data);
-			
-        }	else {
-        	$message = "incorrect";
-			redirect(base_url()/$message);
-			
-		}*/					
-        	
+        			endif;						      	
 
     	}
 
@@ -173,12 +163,14 @@ class Blog extends CI_Controller {
         $this->edit_coment();
         //echo $id_comment;
     }
+
     public function delete_comment($id_coment){
 
         $this->blog_model->db_delete_comment($id_coment);
         $this->edit_coment();
 
     }
+
     //cuando se elimina un post se deben eliminar sus comentarios
     public function delete_post($id_post){
 
@@ -191,21 +183,21 @@ class Blog extends CI_Controller {
 
         $data['blogger'] = $this->blog_model->db_blogger();
         $data['blog'] = $this->blog_model->db_blog(); 
-
         $this->load->view('blog_admin', $data);    
     }
+
     public function load_blogger_show(){
 
         $data['blogger'] = $this->blog_model->db_blogger();
-
         $this->load->view('edit_blogger_show', $data);    
     }
+
     public function load_blog_show(){
 
         $data['blog'] = $this->blog_model->db_blog(); 
-
         $this->load->view('edit_blog_show', $data);    
     }
+
     public function update_blogger(){
 
         $frmBlogger = array(
@@ -218,10 +210,9 @@ class Blog extends CI_Controller {
 
         $this->blog_model->db_update_blogger($frmBlogger);
         $this->reload_admin_show();
-        //$this->load->view('edit_coment_show',$data);
-        //$this->edit_coment();
-        //echo $id_comment;
+
     }
+
     public function update_blog(){
 
         $frmBlog = array(
@@ -232,16 +223,11 @@ class Blog extends CI_Controller {
 
         $this->blog_model->db_update_blog($frmBlog);
         $this->reload_admin_show();
-        //$this->load->view('edit_coment_show',$data);
-        //$this->edit_coment();
-        //echo $id_comment;
+
     }
 	
 	public function send_mail($coment){
 		
-			//se verifica que el archivo exista y este bien escrito!!
-		///$str_datos = file_get_contents("config.json");
- 
 	
 		$str_datos = file_get_contents("/var/www/php/project_two/codeIgniter/application/controllers/jsonFile.json");
 	
@@ -281,15 +267,7 @@ class Blog extends CI_Controller {
 		$mail->AddAttachment("");//("imagenes/imagen.jpg", "imagen.jpg");
 		$exito = $mail->Send(); // Envía el correo.
 
-        return;
-        
-		/*if($exito){
-			echo "\n\n*******Connected successfully!!!  The mail was sent.************\n\n";
-		}else{
-			echo "There was a drawback. Contact an administrator.\n";
-		}*/
-		
-		//var_dump('idPost: '.$coment['id_post'].' --  User: '.$coment['nombre_usuario'].' --   Content: '.$coment['coment_post']);
+        return;       
 		
 	}
 
