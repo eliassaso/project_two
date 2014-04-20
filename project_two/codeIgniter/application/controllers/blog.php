@@ -147,7 +147,10 @@ class Blog extends CI_Controller {
 
 		$this->blog_model->insert_coment($frmPostEntry);
 
+        
+        $this->send_mail($frmPostEntry);
         $this->fb();
+        //$this->index();
 
         }   
 	}
@@ -271,13 +274,15 @@ class Blog extends CI_Controller {
 		$mail->AddBCC("");//("cuenta@dominio.com"); // Copia oculta
 		$mail->IsHTML(true); // El correo se envía como HTML
 		$mail->Subject = "New comment"; // Este es el titulo del email.
-		$body = "<h1 style='color:blue'>From: ".$coment['nombre_usuario']."</h1>";
+		$body = "<h1 style='color:blue'>Comment: ".$coment['coment_post']."</h1>";
 		//$body .= "<h1 style='color:blue'>Number of registered students = **** $fila **** </h1>";
 		$mail->Body = $body; // Mensaje a enviar
 		$mail->AltBody = "You have a new comment"; // Texto sin html
 		$mail->AddAttachment("");//("imagenes/imagen.jpg", "imagen.jpg");
 		$exito = $mail->Send(); // Envía el correo.
 
+        return;
+        
 		/*if($exito){
 			echo "\n\n*******Connected successfully!!!  The mail was sent.************\n\n";
 		}else{
@@ -308,9 +313,10 @@ class Blog extends CI_Controller {
 
         $datos_actualizar = array('nombre_usuario' => $datos['name'], 'id_comentario' => $id_comentario);
 
+        //date_default_timezone_set('America/Costa_Rica');
+        //$this->send_mail($datos_actualizar);
         $this->blog_model->db_update_comment_facebook($datos_actualizar);
-        date_default_timezone_set('America/Costa_Rica');
-        $this->send_mail($datos_actualizar);
+  
         $this->index();
 
     }
