@@ -140,6 +140,9 @@
 		}
 
 	</style>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
+	
+
 </head>
 <body>
 
@@ -147,6 +150,7 @@
 
 
 <div id="containerBlog">
+
 	<div id="container_login">
 		<FORM name="frmLogin" method="post" action="<?php echo base_url().'/index.php/blog/consultPassword'; ?>" > 
 			<h3>logging of administrator blog: </h3><BR><BR><BR>
@@ -189,9 +193,39 @@
                         <h4>Date: <?=$entry->fecha?></h4>
                         Post: <?=$entry->contenido?><br />		
 					<div id="containerComentSays">
-						<h3><label>who says:</label><INPUT TYPE="text" PLACEHOLDER="Name" name="nombre_usuario"></h3>
+						<!--<h3><label>who says:</label><INPUT TYPE="text" PLACEHOLDER="Name" name="nombre_usuario"></h3>-->
                         <h3><textarea name="coment_post" type="textarea" rows="1" cols="80"> </textarea></h3>
                         <h3><input type="submit" name="comentario" value="Comment"> </h3>
+
+                        
+
+
+
+<!--<script type="text/javascript">
+		
+
+
+$(function() {
+  $.ajax({
+    url: '//connect.facebook.net/es_ES/all.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      FB.init({
+        appId: '688464854525247',
+        xfbml: true
+      });
+      FB.Event.subscribe('auth.authResponseChange', function(response) {
+        if (response && response.status == 'connect') {
+          FB.api('/me', function(response) {
+            alert('Nombre: ' + data.name);
+          });
+        }
+      });
+    }
+  });
+});
+	</script>-->
 					</div><br>
 						<div id="containerComent">	
 

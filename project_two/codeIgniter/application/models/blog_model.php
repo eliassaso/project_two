@@ -66,6 +66,12 @@
             return $this->db->get('comentario')->result();    
  
     }
+    function get_coment_id_recent(){
+    
+            return $this->db->query("SELECT * FROM comentario ORDER BY id_comentario DESC;")->row();   
+
+ 
+    }
 
     function insert_content_post($db_post){
 
@@ -88,7 +94,7 @@
     
             
      $this->db->query("INSERT INTO comentario (id_post, nombre_comentarista, estado, fecha_comentario, contenido_comentario) 
-                               VALUES (".$db_coment['id_post'].", '".$db_coment['nombre_usuario']."', 
+                               VALUES (".$db_coment['id_post'].", ' ', 
                                       '".$db_coment['estado']."','".$db_coment['fecha_comentario']."',
                                       '".$db_coment['coment_post']."')");   
         //print_r("INSERT INTO post (id_blog, id_blogger, titulo, fecha, contenido) 
@@ -104,6 +110,22 @@
      try {
 
             $this->db->query ("UPDATE comentario SET estado = 's'  WHERE id_comentario = ".$id_coment.";"); 
+       
+     } catch (Exception $e) {
+
+       echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+
+     }
+
+            //return "Insert sucessfully!!!";
+ 
+    }
+
+    function db_update_comment_facebook($datos){
+    
+     try {
+
+            $this->db->query ("UPDATE comentario SET nombre_comentarista = '".$datos['nombre_usuario']."'  WHERE id_comentario = ".$datos['id_comentario'].";"); 
        
      } catch (Exception $e) {
 

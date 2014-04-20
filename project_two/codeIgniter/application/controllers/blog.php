@@ -15,6 +15,7 @@ class Blog extends CI_Controller {
         	//$data['post'] = '';
         	//$this->load->library('database');
         	$this->load->model('blog_model'); 
+
     	}
 
 	/**
@@ -119,13 +120,14 @@ class Blog extends CI_Controller {
 
 	public function insert_coment(){
 
-		$frmPostEntry = array(
+		
+       
+        $frmPostEntry = array(
         'id_post' => $this->input->post('id_post'),
-        'nombre_usuario' => $this->input->post('nombre_usuario'),
-        'coment_post' => $this->input->post('coment_post'),
+        'coment_post' => $this->input->post('coment_post')
         );
 
-        if (($frmPostEntry['nombre_usuario'] == '') || ($frmPostEntry['coment_post'] == ' ')) {
+        if (($frmPostEntry['coment_post'] == ' ')) {
             
 
             ?>
@@ -137,17 +139,17 @@ class Blog extends CI_Controller {
 
 
         } else {
-             
+         
+        //$frmPostEntry['nombre_usuario'] = $datos['name'];       
 		date_default_timezone_set('America/Costa_Rica');	
 		$frmPostEntry['fecha_comentario'] = ($fecha = date("y-m-d"));
 		$frmPostEntry['estado'] = "n";
 
 		$this->blog_model->insert_coment($frmPostEntry);
-		$this->send_mail($frmPostEntry);
-		//se llama a la funcion de enviar correo
-        $this->index();
 
-        }    
+        $this->fb();
+
+        }   
 	}
 
     public function edit_coment(){
@@ -269,7 +271,7 @@ class Blog extends CI_Controller {
 		$mail->AddBCC("");//("cuenta@dominio.com"); // Copia oculta
 		$mail->IsHTML(true); // El correo se envía como HTML
 		$mail->Subject = "New comment"; // Este es el titulo del email.
-		$body = "<h1 style='color:blue'>idPost:".$coment['id_post']." --  User:  ".$coment['nombre_usuario']." --   Content: ".$coment['coment_post']."</h1>";
+		$body = "<h1 style='color:blue'>From: ".$coment['nombre_usuario']."</h1>";
 		//$body .= "<h1 style='color:blue'>Number of registered students = **** $fila **** </h1>";
 		$mail->Body = $body; // Mensaje a enviar
 		$mail->AltBody = "You have a new comment"; // Texto sin html
@@ -286,7 +288,32 @@ class Blog extends CI_Controller {
 		
 	}
 
+    public function fb(){
 
+        require_once("fb.php"); 
+        // Para conseguir las KEY, crean la aplicacion desde http://www.facebook.com/developers/createapp.php
+        $facebook =  new Facebooklogin('688464854525247', 'aa3842f86f58308817e7b7199bcd700a',base_url().'/index.php/blog/fb'); // La url debe coneter el archivo donde esta ese script. Ejemplo: http://miweb.com/loginconfacebook.php/   
+        // A continuacion se declaran los permisos 
+        //$facebook->permissions("link"); // Se declara el permiso de acceso a la fecha de cumpleaños 
+        $facebook->permissions("name"); // Se decalra el permiso de acceso al email 
+        // Termina declaración de permisos       
+        $facebook->conect(); // Empieza la conexión a Facebook 
+        $datos = $facebook->getinfo(); // Se definde la variable datos con los datos del usuario. 
+         
+        //return $datos['name']; 
+
+        $this->load->model('blog_model'); 
+        $ultimo_comentario['comentario_reciente'] = $this->blog_model->get_coment_id_recent();
+        $id_comentario = $ultimo_comentario['comentario_reciente']->id_comentario;
+
+        $datos_actualizar = array('nombre_usuario' => $datos['name'], 'id_comentario' => $id_comentario);
+
+        $this->blog_model->db_update_comment_facebook($datos_actualizar);
+        date_default_timezone_set('America/Costa_Rica');
+        $this->send_mail($datos_actualizar);
+        $this->index();
+
+    }
 }
 
 /* End of file welcome.php */
